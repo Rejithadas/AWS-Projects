@@ -32,7 +32,7 @@
 - Prepare Incremental Data for next year and load the same into  the sub folder and re run the crawler rule .
 - The crawler will discover the new folder and update the data catalog.
 
-5. Querying with Athena:
+### Step #1: Querying with Athena:
 - In Athena settings, specify the S3 folder where the SQL query results should be stored.
 - Query the "orders" table in the Glue Data Catalog.
 - Take advantage of partitions for faster queries.

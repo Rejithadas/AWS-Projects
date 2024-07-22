@@ -1,5 +1,5 @@
 
-# Mini AWS Cloud Project 
+# AWS Mini Cloud Project 
 
 ## Project #1: End to End AWS Data Engineering Project Beginner level
 

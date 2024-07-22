@@ -7,35 +7,36 @@
 - Download the  "Superstore" sales dataset from Kaggle.
 
 ### Step #1: Store the Dataset in Amazon S3
-- Create Buckets and Folders in S3:
 - Create an S3 bucket named "storeanalysis"
 - Within the bucket, create a folder named "orders" to store the sales data.
-- Inside "orders," create subfolders based on year (e.g., "snapshot_year=2017"). 
+- Inside "orders," create subfolders based on year (e.g., "year=2017"). 
 - This partitioning help in efficient querying.
 
-Load Initial Data:
+### Step #2: Load Initial Data:
 - Filter the dataset for a specific year and load as incremental data
 - Save the filtered data as a CSV file (e.g., "orders_2017.csv").
 - Upload "orders_2017.csv" to the relevant subfolder in S3
 
-2. AWS Glue Crawler and Data Catalog:
+### Step #3: AWS Glue Crawler and Data Catalog:
 
-- Create a Glue Database: This acts as a logical container for your tables within Glue.
-- Create a Crawler:Name the crawler "orders_project".
+- Create a Glue Database
+- Create a crawler "orders_project".
 - Select the S3 data source (the "orders" folder).
-- Configure crawler behavior:Choose "Crawl new folders only" (since we'll be adding data incrementally).
+- Configure crawler behavior, choose "Crawl new folders only" (since the data is added  incrementally).
 - Set the IAM role to the "AWSGlueServiceRole" or create a new one with appropriate S3 permissions.
 - Select the Glue database created.
 - Set the frequency to "Run on demand".
-- Run the Crawler: The crawler will scan the S3 folders and files and create tables in the Glue Data Catalog, representing your S3 data structure.
+- Run the crawlerand it  will scan the S3 folders and files and create tables in the Glue Data Catalog, representing S3 data structure.
 
-3. Load Incremental Data:
-- Prepare Incremental Dataf ro next year and load the same into  the sublfolder and re run the crawler rule .
+### Step #4: Load Incremental Data:
+- Prepare Incremental Data for next year and load the same into  the sub folder and re run the crawler rule .
 - The crawler will discover the new folder and update the data catalog.
 
 5. Querying with Athena:
 - In Athena settings, specify the S3 folder where the SQL query results should be stored.
-- Query the "orders" table in the Glue Data Catalog.Take advantage of partitions for faster queries.
+- Query the "orders" table in the Glue Data Catalog.
+- Take advantage of partitions for faster queries.
+- More visualisations can be designed using amzon Quicksight.
 
 ## Project #2: Visualize Data using Amazon QuickSight (Beginner level)
 
